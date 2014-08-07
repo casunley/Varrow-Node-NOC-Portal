@@ -1,0 +1,29 @@
+doctype html
+html
+  head
+    title= title
+    meta(charset='utf-8')
+    meta(content='IE=edge,chrome=1' http-equiv='X-UA-Compatible')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+  body
+    p= auth
+    if auth
+      a(href='/logout') Logout - 
+    else
+      a(href='/') Login - 
+    a(href='/accounts') Accounts
+    div.navbar.navbar-inverse.navbar-fixed-top(role="navigation" style='height:6%')
+      div.row
+        div.col-md-6
+          a.navbar-brand(style='text-align:center;width:100%;' href='/') Varrow NOC Portal
+        div.col-md-6(style='text-align:center')
+          div.form-group(syle='margin-bottom:0px')
+            form(class="navbar-form" role="form" action="/search/accountsearch" method = "post")
+              span
+                input.search-query.form-control(type='text' name='searchKey' placeholder='Search Accounts')
+                button.btn.btn-success(type='submit')
+                  span.glyphicon.glyphicon-search
+    div.container(style='width:85%;padding-top:35px')
+      block content
