@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  div(style='text-align:center')
+    img(src='/images/Varrow-Logo-Optimized.jpg' style='width:70%')
+    form(role='search' action='/search/results' method='post')
+      div.input-group
+        input.form-control(type='text', placeholder='Search Accounts' name='searchKey')
+        div.input-group-btn
+          button.btn.btn-success(type='submit')
+            span.glyphicon.glyphicon-search

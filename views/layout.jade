@@ -5,25 +5,45 @@ html
     meta(charset='utf-8')
     meta(content='IE=edge,chrome=1' http-equiv='X-UA-Compatible')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
+    script(src='/javascripts/bootstrap.js')
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
   body
-    p= auth
-    if auth
-      a(href='/logout') Logout - 
-    else
-      a(href='/') Login - 
-    a(href='/accounts') Accounts
-    div.navbar.navbar-inverse.navbar-fixed-top(role="navigation" style='height:6%')
-      div.row
-        div.col-md-6
-          a.navbar-brand(style='text-align:center;width:100%;' href='/') Varrow NOC Portal
-        div.col-md-6(style='text-align:center')
-          div.form-group(syle='margin-bottom:0px')
-            form(class="navbar-form" role="form" action="/search/accountsearch" method = "post")
-              span
-                input.search-query.form-control(type='text' name='searchKey' placeholder='Search Accounts')
+    div.navbar.navbar-inverse.navbar-static-top(role="navigation" )
+      div.container
+        div.navbar-header
+          button.navbar-toggle(type='button' data-toggle='collapse' data-target='.navbar-collapse')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='/') Varrow NOC Portal
+        div.collapse.navbar-collapse.navbar-ex1-collapse
+          ul.nav.navbar-nav
+            if auth
+              li.dropdown
+                a.dropdown-toggle(type='button' id='dropdownMenu1' data-toggle='dropdown') 
+                  span.glyphicon.glyphicon-user 
+                  &nbsp; #{user}
+                  span.caret
+                ul.dropdown-menu(role='menu')
+                  li
+                    a(href='/logout') Logout
+                  li
+                    a(href='https://na5.salesforce.com/#{userId}') View in Salesforce
+            else
+              li
+                a(href='/') Login
+          form.navbar-form.navbar-right(role='search' action='/search/results' method='post')
+            div.input-group
+              input.form-control(type='text', placeholder='Search Accounts' name='searchKey')
+              div.input-group-btn
                 button.btn.btn-success(type='submit')
                   span.glyphicon.glyphicon-search
-    div.container(style='width:85%;padding-top:35px')
+    div.container
+      if auth
+            
+      else
+        a(href='/') Login
       block content
