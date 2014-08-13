@@ -10,7 +10,7 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
   body
-    div.navbar.navbar-inverse.navbar-static-top(role="navigation" )
+    div.navbar.navbar-inverse.navbar-static-top(role='navigation' )
       div.container
         div.navbar-header
           button.navbar-toggle(type='button' data-toggle='collapse' data-target='.navbar-collapse')
@@ -24,9 +24,8 @@ html
             if auth
               li.dropdown
                 a.dropdown-toggle(type='button' id='dropdownMenu1' data-toggle='dropdown') 
-                  span.glyphicon.glyphicon-user 
-                  &nbsp; #{user}
-                  span.caret
+                  span.glyphicon.glyphicon-user
+                  span #{user}
                 ul.dropdown-menu(role='menu')
                   li
                     a(href='/logout') Logout
@@ -42,8 +41,4 @@ html
                 button.btn.btn-success(type='submit')
                   span.glyphicon.glyphicon-search
     div.container
-      if auth
-            
-      else
-        a(href='/') Login
       block content

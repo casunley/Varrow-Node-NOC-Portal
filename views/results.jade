@@ -2,9 +2,7 @@ extends layout
 
 block content
   h1= title
-  table
-    tbody
-      each record in records
-        tr
-          td 
-            a(href='/account-detail/#{record.Id}') #{record.Name}
+  ul
+  each record in records
+    li 
+      a(href='/account-detail/#{record.Id}') #{record.Name}

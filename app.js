@@ -1,13 +1,12 @@
 // External Requirements
 var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var jsforce = require('jsforce');
 var url = require('url');
 
 // Internal Requirements
-// - Add routes!
+// ToDo - Add routes!
 
 // Create the app
 var app = express();
@@ -17,7 +16,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Set up the Oauth2 Info for jsforce
@@ -85,6 +83,7 @@ app.get('/search', function(req, res) {
   });
 });
 
+// Search results
 app.post('/search/results', function(req, res) {
   var searchKey = req.param('searchKey');
   console.log(searchKey);
@@ -100,7 +99,7 @@ app.post('/search/results', function(req, res) {
     .on("end", function(query) {
       console.log("total fetched : " + query.totalFetched);
       res.render('results', {
-        title: 'Account Records for search: ' + searchKey,
+        title: query.totalFetched + ' Account Record(s) found for search: ' + searchKey,
         records: records
       });
     })
@@ -156,6 +155,6 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-// Start Listening
+// Start Listening!
 app.listen(8080);
 console.log('Express Server listening on port 8080');
